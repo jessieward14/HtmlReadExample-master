@@ -41,8 +41,23 @@ public class HtmlRead implements ActionListener{
                 if (line.contains("href=")) {
                     int beginIndex = line.indexOf("href");
                     String chop = line.substring(beginIndex + 6);
-                    System.out.println(chop);
-                    int endIndex = line.indexOf("\"");
+                    //System.out.println(chop);
+                    int endIndex = chop.indexOf("\"");
+                    int finish = chop.indexOf("'");
+                    if(endIndex<0){
+                        System.out.println(chop.substring(0, finish));
+                    }
+                   else if(finish<0){
+                        System.out.println(chop.substring(0, endIndex));
+                    }
+                   else if(finish<endIndex){
+                        System.out.println(chop.substring(0, finish));
+                    }
+                    else {
+                        System.out.println(chop.substring(0, endIndex));
+                    }
+
+
                     String rid = line.substring(0,endIndex);
                     System.out.println(rid);
                 }
