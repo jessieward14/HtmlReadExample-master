@@ -7,6 +7,7 @@ import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class HtmlRead implements ActionListener{
 
@@ -20,6 +21,8 @@ public class HtmlRead implements ActionListener{
     private JTextField t2;
     private int WIDTH = 800;
     private int HEIGHT = 700;
+    public ArrayList results = new ArrayList();
+
 
     public static void main(String[] args) {
         HtmlRead swingControlDemo = new HtmlRead();
@@ -39,29 +42,37 @@ public class HtmlRead implements ActionListener{
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.contains("href=")) {
-                    int beginIndex = line.indexOf("href");
-                    String chop = line.substring(beginIndex + 6);
-                    //System.out.println(chop);
-                    int endIndex = chop.indexOf("\"");
-                    int finish = chop.indexOf("'");
-                    if(endIndex<0){
-                        System.out.println(chop.substring(0, finish));
-                    }
-                   else if(finish<0){
-                        System.out.println(chop.substring(0, endIndex));
-                    }
-                   else if(finish<endIndex){
-                        System.out.println(chop.substring(0, finish));
-                    }
-                    else {
-                        System.out.println(chop.substring(0, endIndex));
-                    }
+                    if (line.contains(t2.getText())) {
+                        System.out.println(line.contains("facebook"));
+                        int beginIndex = line.indexOf("href=");//begin equals href
+                        String chop = line.substring(beginIndex + 6);
+                        //System.out.println(chop);
+                        int endIndex = (chop.indexOf("\""));
+                        int finish = chop.indexOf("\'");
+                        if (endIndex < 0) {
+                            System.out.println(chop.substring(0, finish));
+                            results.add(chop.substring(0, finish));
+                        } else if (finish < 0) {
+                            System.out.println(chop.substring(0, endIndex));
+                            results.add(chop.substring(0, endIndex));
+                        } else if (finish < endIndex) {
+                            System.out.println(chop.substring(0, finish));
+                            results.add(chop.substring(0, finish));
+                        } else {
+                            System.out.println(chop.substring(0, endIndex));
+                            results.add(chop.substring(0, endIndex));
+                        }
 
 
-                    String rid = line.substring(0,endIndex);
-                    System.out.println(rid);
+                        //String rid = line.substring(0,endIndex);
+                        //System.out.println(rid);
+                    }
+
                 }
-            }
+                //if(keyword.contains("href=")){
+
+                }
+
             reader.close();
         } catch (Exception ex) {
             System.out.println(ex);
@@ -108,6 +119,8 @@ public class HtmlRead implements ActionListener{
         mainFrame.add(t1);//add typing area
         mainFrame.add(t2);//add typing area
         mainFrame.setJMenuBar(mb); //set menu bar
+
+
 
 
         statusLabel = new JLabel("hi", JLabel.CENTER);
@@ -158,8 +171,8 @@ public class HtmlRead implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             String command = e.getActionCommand();
 
-            if (command.equals("Search")) {
-                statusLabel.setText("Results");
+           if (command.equals("Search")) {
+           //     statusLabel.setText(results());
             } else if (command.equals("Submit")) {
                 statusLabel.setText("Submit Button clicked.");
             } else if (command.equals("Dance")) {
