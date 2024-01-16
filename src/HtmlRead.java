@@ -109,9 +109,10 @@ public class HtmlRead implements ActionListener {
 
         Results = new JTextArea();
         Results.setSize(WIDTH, HEIGHT);
-        scroll = new JScrollPane(Results,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        //scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scroll.add(Results);
+        scroll = new JScrollPane(Results, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//        scroll = new JScrollPane(Results) ;
+//        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+      //  scroll.add(Results);
 //        mainFrame.add(scroll);
 
 
@@ -153,6 +154,7 @@ public class HtmlRead implements ActionListener {
 
 
 
+
         // statusLabel = new JLabel("hi", JLabel.CENTER);
         // statusLabel.setSize(350, 100);
 
@@ -167,6 +169,7 @@ public class HtmlRead implements ActionListener {
         mainFrame.add(controlPanel, BorderLayout.NORTH);
         //mainFrame.add(statusLabel);
         mainFrame.add(scroll, BorderLayout.CENTER);
+//        mainFrame.pack();
         mainFrame.setVisible(true);
     }
 
@@ -250,9 +253,11 @@ public class HtmlRead implements ActionListener {
                                 }
 
 
+
                                 //String rid = line.substring(0,endIndex);
                                 //System.out.println(rid);
                             }
+
 
                         }
                         //if(keyword.contains("href=")){
@@ -271,6 +276,8 @@ public class HtmlRead implements ActionListener {
             } else {
                 statusLabel.setText("Cancel Button clicked.");
             }
+          //  scroll.add(Results);
+           // mainFrame.add(scroll, BorderLayout.CENTER);
         }
     }
 }
